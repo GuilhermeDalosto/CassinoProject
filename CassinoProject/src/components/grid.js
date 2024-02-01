@@ -1,11 +1,11 @@
 import React from 'react';
-import Circle from './circle';
-import { FlatList, View, Text, StyleSheet } from 'react-native';
+import ShapeGenerator from '../utils/shapeGenerator';
+import { Alert, FlatList, View, Text, StyleSheet } from 'react-native';
 
-const CustomGrid = ({title, items}) => {
+const CustomGrid = ({ title, items }) => {
     const renderItem = ({ item }) => (
         <View style={styles.gridItem}>
-            <Circle color='green'/>
+            <ShapeGenerator size={20} available={Math.random() < 0.5} />
         </View>
     );
 
@@ -25,14 +25,18 @@ const CustomGrid = ({title, items}) => {
             alignItems: 'center',
             margin: 4,
         },
-    });            
+    });
+
+    const reload = () => {
+        Alert.alert("some")
+    }
 
     return (
-        <View style = {styles.grid}>
+        <View style={styles.grid}>
             <Text> {title} </Text>
             <FlatList
-                style={{ 
-                    backgroundColor: "rgba(0, 0, 255, 0.2)",                    
+                style={{
+                    backgroundColor: "rgba(0, 0, 255, 0.2)",
                 }}
                 data={items}
                 numColumns={5}
@@ -41,8 +45,6 @@ const CustomGrid = ({title, items}) => {
             />
         </View>
     )
-
-
 }
 
 export default CustomGrid;

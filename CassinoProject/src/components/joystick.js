@@ -1,14 +1,10 @@
 import React from 'react';
 import Circle from './circle';
 import Table from './table';
-import { StyleSheet, TouchableOpacity, View, Alert } from 'react-native';
+import { StyleSheet, TouchableOpacity, View } from 'react-native';
 
-const JoyStick = () => {
-
-    const onPressButton = () => {
-        Alert.alert('press button');
-    }
-
+const JoyStick = ({onPressButton}) => {
+    
     return (
         <View style={styles.joystick}>
 
