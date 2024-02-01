@@ -1,7 +1,8 @@
 import React from 'react';
+import ShapeGenerator from './shapeGenerator';
 import { Image, StyleSheet } from 'react-native';
 
-const ImageGenerator = ({size}) => {
+const ImageGenerator = ({value, size}) => {
     const images = {
         bear: require('../../assets/bear.png'),
         boar: require('../../assets/boar.png'),
@@ -29,9 +30,14 @@ const ImageGenerator = ({size}) => {
 
 
     const generateAnimal = () => {
-        const animalNames = Object.keys(images);
-        const randomAnimalName = animalNames[Math.floor(Math.random() * animalNames.length)];
-        const imageSource = images[randomAnimalName];
+        if (value > 14) {
+            return <ShapeGenerator size={20} />;        
+        }
+        let animalNames = Object.keys(images);
+        let number = value || Math.floor(Math.random() * animalNames.length)        
+        let randomAnimalName = animalNames[number];
+        console.log(randomAnimalName)
+        let imageSource = images[randomAnimalName];
 
         return <Image style={styles.image} source={imageSource} />;
     };

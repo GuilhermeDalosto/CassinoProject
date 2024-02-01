@@ -5,15 +5,15 @@ import JoyStick from '../components/joystick';
 import { StyleSheet, SafeAreaView } from 'react-native';
 
 const GameScene = () => {
-    const gridItems = Array.from({ length: 20 }, (_, index) => ({}));
+    const gridItems = Array.from({ length: 20 }, (_, index) => Math.floor(Math.random() * 51));
     const gridRef = useRef(null);
 
-    const handleReload = (exposedFunctions) => {        
+    const handleReload = (exposedFunctions) => {
         gridRef.current = exposedFunctions.reload;
     };
 
     return (
-        <SafeAreaView style={styles.scene}>            
+        <SafeAreaView style={styles.scene}>
             <CustomListRow title="Hero Passives" items={[1, 2, 3]} />
             <CustomGrid title="Board" items={gridItems} onReload={handleReload} />
             <JoyStick onPressButton={() => gridRef.current && gridRef.current()} />

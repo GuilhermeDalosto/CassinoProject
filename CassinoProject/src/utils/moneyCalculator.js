@@ -1,9 +1,10 @@
 import React from 'react';
 
 function countAnimals(animals) {
+    // console.log(animals)
     let amount = 0
     for (let index = 0; index < animals.length; index++) {
-        console.log(animals)
+        // console.log(animals)
         amount += checkAnimal(animals[index])
     }
 
