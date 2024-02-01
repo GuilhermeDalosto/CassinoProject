@@ -10,7 +10,7 @@ const CustomListColumn = ({ items }) => {
     );
 
     return (
-        <View style={styles.list}>            
+        <View style={styles.list}>
             <FlatList
                 style={{ backgroundColor: 'rgba(1,1,1,0.11)' }}
                 data={items}
