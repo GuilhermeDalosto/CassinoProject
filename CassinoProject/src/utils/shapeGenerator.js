@@ -1,26 +1,23 @@
 import React from 'react';
 import { View, StyleSheet } from 'react-native';
 
-const ShapeGenerator = ({ size, available }) => {    
-    const color = (available === true) ? 'green' : 'blue'
-    const formattedSize = (available === true) ? size : size * 2
-
+const ShapeGenerator = ({ size }) => {            
     const styles = StyleSheet.create({
         base: {
-            width: formattedSize,
-            height: formattedSize,
-            backgroundColor: color,
+            width: size,
+            height: size,
+            backgroundColor: 'green',
         },
         circle: {
-            borderRadius: formattedSize / 2,
+            borderRadius: size / 2,
         },
         triangle: {
-            borderLeftWidth: formattedSize / 2,
-            borderRightWidth: formattedSize / 2,
-            borderBottomWidth: formattedSize,
+            borderLeftWidth: size / 2,
+            borderRightWidth: size / 2,
+            borderBottomWidth: size,
             borderLeftColor: 'transparent',
             borderRightColor: 'transparent',
-            borderBottomColor: color,
+            borderBottomColor: 'green',
             backgroundColor: 'transparent'
         },
         square: {
