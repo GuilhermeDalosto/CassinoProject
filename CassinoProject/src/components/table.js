@@ -26,7 +26,7 @@ const styles = StyleSheet.create({
         backgroundColor: 'white',
         borderWidth: 2,
         borderRadius: 5,
-        borderColor: 'yellow'
+        borderColor: 'black'
     },
 
     column: {

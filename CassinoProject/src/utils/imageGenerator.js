@@ -1,8 +1,7 @@
 import React from 'react';
 import { Image, StyleSheet } from 'react-native';
 
-// Importe todas as imagens antecipadamente
-const ImageGenerator = () => {
+const ImageGenerator = ({size}) => {
     const images = {
         bear: require('../../assets/bear.png'),
         boar: require('../../assets/boar.png'),
@@ -20,6 +19,15 @@ const ImageGenerator = () => {
         zebra: require('../../assets/zebra.png'),
     };
 
+
+    const styles = StyleSheet.create({
+        image: {
+            width: size || 50,
+            height: size || 50,
+        }
+    })
+
+
     const generateAnimal = () => {
         const animalNames = Object.keys(images);
         const randomAnimalName = animalNames[Math.floor(Math.random() * animalNames.length)];
@@ -31,11 +39,4 @@ const ImageGenerator = () => {
     return generateAnimal()
 }
 
-const styles = StyleSheet.create({
-    image: {
-        width: 50,
-        height: 50
-    }
-
-})
 export default ImageGenerator;

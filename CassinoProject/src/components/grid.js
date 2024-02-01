@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 import ShapeGenerator from '../utils/shapeGenerator';
 import ImageGenerator from '../utils/imageGenerator';
-import { Alert, FlatList, View, Text, StyleSheet, Button } from 'react-native';
+import { calculateMoney } from '../utils/moneyCalculator';
+import { FlatList, View, Text, StyleSheet } from 'react-native';
 
 const CustomGrid = ({ title, items, onReload }) => {
     let formattedItems = [...items];
@@ -29,16 +30,16 @@ const CustomGrid = ({ title, items, onReload }) => {
             return <ImageGenerator />;
         }
     };
-    
+
     const exposedFunctions = {
         reload,
     };
-    
-    onReload(exposedFunctions);
+
+    onReload(exposedFunctions); 
 
     return (
         <View style={styles.grid}>
-            <Text> {title} </Text>
+            <Text>${calculateMoney(formattedItems)}</Text>
             <FlatList
                 key={refreshKey}
                 style={{
@@ -48,14 +49,17 @@ const CustomGrid = ({ title, items, onReload }) => {
                 numColumns={5}
                 renderItem={renderItem}
                 contentContainerStyle={styles.gridContainer}
-            />            
+            />
         </View>
     );
 };
 
 const styles = StyleSheet.create({
     grid: {
-        margin: 10
+        margin: 10,
+        borderWidth: 2,
+        borderColor: 'green',
+        borderRadius: 10,
     },
     gridContainer: {
         justifyContent: 'space-between',

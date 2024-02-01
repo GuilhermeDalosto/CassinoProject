@@ -1,10 +1,11 @@
 import React from 'react';
 import { FlatList, View, Text, StyleSheet } from 'react-native';
+import ImageGenerator from '../utils/imageGenerator';
 
 const CustomListColumn = ({ items }) => {
     const renderItem = ({ item }) => (
         <View style={styles.listItem}>
-            <Text>{item}</Text>
+            <ImageGenerator size={20}/>
         </View>
     );
 
@@ -15,6 +16,7 @@ const CustomListColumn = ({ items }) => {
                 data={items}
                 numColumns={1}                
                 renderItem={renderItem}
+                showsVerticalScrollIndicator={false}
                 contentContainerStyle={styles.listContainer}
             />
         </View>

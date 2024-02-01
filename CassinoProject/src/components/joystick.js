@@ -24,7 +24,11 @@ const styles = StyleSheet.create({
         justifyContent: 'flex-end',
         height: 260,
         padding: 20,
-        backgroundColor: 'rgba(252,176,0,1)'
+        backgroundColor: 'rgba(252,176,0,1)',
+        borderWidth: 2,
+        borderColor: 'black',
+        borderRadius: 10,
+        margin: 10,
     },
 
     button: {

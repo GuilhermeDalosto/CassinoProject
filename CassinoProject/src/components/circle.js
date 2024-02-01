@@ -1,7 +1,7 @@
 import React from 'react';
 import { View, StyleSheet } from 'react-native';
 
-const Circle = ({color, size}) => {
+const Circle = ({ color, size }) => {
 
   const styles = StyleSheet.create({
     circle: {
@@ -9,10 +9,12 @@ const Circle = ({color, size}) => {
       height: size || 20,
       borderRadius: size || 20 * 2,
       backgroundColor: color || 'orange',
+      borderWidth: 1,
+      borderColor: 'black'
     },
   });
 
-  return (    
+  return (
     <View style={styles.circle} />
   );
 };
