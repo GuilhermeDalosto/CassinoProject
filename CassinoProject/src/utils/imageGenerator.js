@@ -30,13 +30,13 @@ const ImageGenerator = ({value, size}) => {
 
 
     const generateAnimal = () => {
-        if (value > 14) {
+        if (value > 13) {
             return <ShapeGenerator size={20} />;        
         }
         let animalNames = Object.keys(images);
         let number = value || Math.floor(Math.random() * animalNames.length)        
         let randomAnimalName = animalNames[number];
-        console.log(randomAnimalName)
+        console.log(`${number} -> ${randomAnimalName}`)        
         let imageSource = images[randomAnimalName];
 
         return <Image style={styles.image} source={imageSource} />;

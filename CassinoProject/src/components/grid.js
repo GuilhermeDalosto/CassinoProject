@@ -3,10 +3,10 @@ import ImageGenerator from '../utils/imageGenerator';
 import { calculateMoney } from '../utils/moneyCalculator';
 import { FlatList, View, Text, StyleSheet } from 'react-native';
 
-const CustomGrid = ({ title, items, onReload }) => {
+const CustomGrid = ({ items, onReload }) => {
     let formattedItems = [...items];
     let animals = [];
-    
+
     const [refreshKey, setRefreshKey] = useState(0);
     const [moneyText, setMoneyText] = useState('');
 
@@ -16,23 +16,30 @@ const CustomGrid = ({ title, items, onReload }) => {
         </View>
     );
 
-    const reload = () => {
-        let auxSort = () => Math.random() - 0.5;
-        formattedItems = formattedItems.sort(auxSort);
+    const shuffleArray = (array) => {
+        for (let i = array.length - 1; i > 0; i--) {
+          const j = Math.floor(Math.random() * (i + 1));
+          [array[i], array[j]] = [array[j], array[i]];
+        }
         
+        return array
+      };
+
+    const reload = () => {        
+        formattedItems = shuffleArray(formattedItems)
         setRefreshKey(prevKey => prevKey + 1);        
         setMoneyText(`${calculateMoney(formattedItems)}`);
     };
 
-    const icon = (item) => {        
-        return <ImageGenerator value={item} />;        
+    const icon = (item) => {
+        return <ImageGenerator value={item} />;
     };
 
     const exposedFunctions = {
         reload,
     };
 
-    onReload(exposedFunctions); 
+    onReload(exposedFunctions);
 
     return (
         <View style={styles.grid}>

@@ -5,7 +5,7 @@ import JoyStick from '../components/joystick';
 import { StyleSheet, SafeAreaView } from 'react-native';
 
 const GameScene = () => {
-    const gridItems = Array.from({ length: 20 }, (_, index) => Math.floor(Math.random() * 51));
+    const gridItems = Array.from({ length: 20 }, () => Math.floor(Math.random() * 50));
     const gridRef = useRef(null);
 
     const handleReload = (exposedFunctions) => {
@@ -20,6 +20,7 @@ const GameScene = () => {
         </SafeAreaView>
     );
 };
+
 
 const styles = StyleSheet.create({
     scene: {
