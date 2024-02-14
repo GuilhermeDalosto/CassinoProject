@@ -1,4 +1,4 @@
-import httpClient from '../adapters/HttpClient';
+import httpClient from './httpClient';
 
 const ApiService = {
   async get(endpoint, params) {
