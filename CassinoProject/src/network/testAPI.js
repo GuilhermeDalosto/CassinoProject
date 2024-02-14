@@ -8,10 +8,10 @@ const TestAPI = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const result = await ApiService.get('/endpoint');
+        const result = await ApiService.get('/noticias');
         setData(result);
       } catch (error) {
-        console.error('Erro ao buscar dados:', error);
+        console.error('Failed at getting data:', error);
       }
     };
 
