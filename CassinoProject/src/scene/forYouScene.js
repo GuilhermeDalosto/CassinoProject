@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { View, Text, StyleSheet, FlatList, Image, TouchableOpacity } from 'react-native';
 
-const MyComponent = () => {
+const ForYouScene = () => {
   const [data, setData] = useState([]);
   const [selectedTab, setSelectedTab] = useState('Todos');
 
@@ -21,12 +21,9 @@ const MyComponent = () => {
 
   const renderItem = ({ item }) => (
     <View style={styles.item}>
-      <Image source={require(`../../assets/lula.jpg`)} style={styles.newsImage} />
       <Image source={{ uri: `https://i.pravatar.cc/150?u=${item.userId}` }} style={styles.image} />
-      <Text style={styles.editory}>POLÍTICA</Text>
-      <Text style={styles.columnist}>Antonio Penteado</Text>
       <Text style={styles.title}>{item.title}</Text>
-      <Text style={styles.body}>15/08/2023 | 20h00</Text>
+      <Text style={styles.body}>{item.body}</Text>
     </View>
   );
 
@@ -37,19 +34,18 @@ const MyComponent = () => {
 
   return (
     <View style={styles.container}>
-      <Text style={styles.header}>Colunistas</Text>
-      <View style={styles.tabBar}>      
+      <View style={styles.tabBar}>
         <TouchableOpacity
-          style={[styles.tab, selectedTab === 'Todos' && styles.selectedTab]}
-          onPress={() => handleTabPress('Todos')}
+          style={[styles.tab, selectedTab === 'Para Você' && styles.selectedTab]}
+          onPress={() => handleTabPress('Para Você')}
         >
-          <Text style={styles.tabText}>Todos</Text>
+          <Text style={styles.tabText}>Para Você</Text>
         </TouchableOpacity>
         <TouchableOpacity
-          style={[styles.tab, selectedTab === 'Seguindo' && styles.selectedTab]}
-          onPress={() => handleTabPress('Seguindo')}
+          style={[styles.tab, selectedTab === 'Notícias Salvas' && styles.selectedTab]}
+          onPress={() => handleTabPress('Notícias Salvas')}
         >
-          <Text style={styles.tabText}>Seguindo</Text>
+          <Text style={styles.tabText}>Notícias Salvas</Text>
         </TouchableOpacity>
       </View>
       <FlatList
@@ -65,25 +61,17 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     paddingTop: 22,
-    backgroundColor: 'rgba(0,0,0,0.05)',
   },
   tabBar: {
     flexDirection: 'row',
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: 'lightblue',
+    backgroundColor: 'light gray',
     paddingVertical: 10,
   },
   tab: {
     paddingHorizontal: 20,
   },
-  header: {
-    fontSize: 40,
-    color: 'rgb(37, 117, 232)',
-    fontWeight: 'bold',
-    marginBottom: 10,
-    marginLeft: 10,
-},
   selectedTab: {
     borderBottomWidth: 2,
     borderColor: 'blue',
@@ -91,56 +79,24 @@ const styles = StyleSheet.create({
   tabText: {
     fontSize: 16,
   },
-  item: {    
-    backgroundColor: 'white',
+  item: {
+    backgroundColor: 'lightblue',
     padding: 20,
     marginVertical: 8,
     marginHorizontal: 16,
-    height: 340,
-  },
-  columnist: {
-    fontSize: 20,
-    fontWeight: 'bold',    
-    color: 'rgb(37, 117, 232)',
-    position: 'absolute',
-    textAlign: 'center',
-    top: 90,
-    bottom: 0,
-    left: 60,
-    right: 0,
-
-  },
-  editory: {
-    fontSize: 11,
-    fontWeight: 'bold',
-    color: 'rgb(37, 117, 232)',
-    marginVertical: 10,
   },
   title: {
-    fontSize: 20,
-    fontWeight: 'semibold'
+    fontSize: 24,
   },
   body: {
-    fontSize: 12,
-    fontWeight: 'regular',
-    marginTop: 10,
-    color: 'rgb(93 116 142)'
+    fontSize: 16,
   },
   image: {
     width: 100,
     height: 100,
     borderRadius: 50,
     marginBottom: 10,
-    borderWidth: 4,
-    borderColor: 'rgb(37, 117, 232)',
-  },
-  newsImage: {
-    width: 345,
-    height: 176,
-    position: 'absolute',
-    left: 0,
-    top: -100
   },
 });
 
-export default MyComponent;
+export default ForYouScene;

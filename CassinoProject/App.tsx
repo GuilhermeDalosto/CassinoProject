@@ -3,6 +3,7 @@ import { View, Text, StyleSheet, SafeAreaView } from 'react-native';
 import TabBar from './src/scene/editors/tabBar';
 import EditorsScene from './src/scene/editors/editorsScene';
 import NewsScene from './src/scene/newsScene';
+import ForYouScene from './src/scene/forYouScene';
 
 const App = () => {
   const [selectedTab, setSelectedTab] = useState(0);
@@ -14,6 +15,9 @@ const App = () => {
   };
 
   const handlePage = (index) => {
+    if (index == 2) {
+      return <ForYouScene/>
+    }
     if (index == 3) {
       return <EditorsScene/>
     }
