@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { View, Text, FlatList, ScrollView, StyleSheet, TouchableOpacity, Image } from 'react-native';
+import { View, Text, FlatList, ScrollView, StyleSheet, TouchableOpacity, Image, Platform } from 'react-native';
 
 const Stick = ({ color }) => (
     <View style={[styles.stick, { backgroundColor: color }]} />
@@ -27,14 +27,14 @@ const EditorsScene = () => {
 
     const renderItem = ({ item }) => (
         <TouchableOpacity style={styles.item}>
-            <Stick color={'rgb(37, 117, 232)'} />
-            <Image source={require('../../../assets/sustainability.png')} style={styles.image} />
-            <Text style={{
-                fontWeight: 'bold',
-                fontSize: 17,                
-            }}>{item}</Text>
+          <Stick color={'rgb(37, 117, 232)'} />
+          <Image source={require(`../../../assets/sustainability.png`)} style={styles.image} />
+          <Text style={{
+            fontWeight: 'bold',
+            fontSize: 17,
+          }}>{item}</Text>
         </TouchableOpacity>
-    );
+      );
 
     const renderGridItem = ({ item }) => (
         <TouchableOpacity style={styles.gridItem}>
@@ -108,7 +108,7 @@ const styles = StyleSheet.create({
         margin: 5,
         padding: 10,
         borderWidth: 1,
-        borderColor: '#ccc',
+        borderColor: '#ccc',        
     },
     gridImage: {
         width: 20,
