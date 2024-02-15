@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { View, Text, StyleSheet, SafeAreaView } from 'react-native';
 import TabBar from './src/scene/editors/tabBar';
 import EditorsScene from './src/scene/editors/editorsScene';
+import NewsScene from './src/scene/newsScene';
 
 const App = () => {
   const [selectedTab, setSelectedTab] = useState(0);
@@ -16,6 +17,11 @@ const App = () => {
     if (index == 3) {
       return <EditorsScene/>
     }
+
+    if (index == 4) {
+      return <NewsScene/>
+    }
+
     return <Text>Estadão PAGE</Text>
   };
 
