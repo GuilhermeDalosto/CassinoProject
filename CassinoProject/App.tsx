@@ -19,7 +19,7 @@ import {
 import {
   Colors,  
 } from 'react-native/Libraries/NewAppScreen';
-import GameScene from './src/scene/gameScene';
+import EditorsScene from './src/scene/editors/editorsScene';
 
 type SectionProps = PropsWithChildren<{
   title: string; 
@@ -64,7 +64,7 @@ function App(): React.JSX.Element {
         barStyle={isDarkMode ? 'light-content' : 'dark-content'}
         backgroundColor={backgroundStyle.backgroundColor}
       />
-     <GameScene />
+     <EditorsScene/>
     </SafeAreaView>
   );
 }

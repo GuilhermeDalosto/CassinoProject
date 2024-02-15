@@ -3,15 +3,15 @@ import { View, Text } from 'react-native';
 import ApiService from './src/services/ApiService';
 
 const TestAPI = () => {
-  const [data, setData] = useState(null);
+  const [images, setImages] = useState([]);
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const result = await ApiService.get('/noticias');
-        setData(result);
+        const data = await apiRequest('images'); // Chama a função genérica para buscar as imagens
+        setImages(data);
       } catch (error) {
-        console.error('Failed at getting data:', error);
+        console.error('Erro ao buscar imagens:', error);
       }
     };
 

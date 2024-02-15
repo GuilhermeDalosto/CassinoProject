@@ -1,7 +1,7 @@
 import React from 'react';
 import { View, StyleSheet } from 'react-native';
 
-const ShapeGenerator = ({ size }) => {            
+const ShapeGenerator = ({ size }) => {
     const styles = StyleSheet.create({
         base: {
             width: size,
