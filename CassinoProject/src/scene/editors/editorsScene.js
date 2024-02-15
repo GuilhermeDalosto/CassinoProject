@@ -1,103 +1,130 @@
 import React, { useState, useEffect } from 'react';
-import { View, Text, FlatList, StyleSheet, TouchableOpacity, Image } from 'react-native';
+import { View, Text, FlatList, ScrollView, StyleSheet, TouchableOpacity, Image } from 'react-native';
+
+const Stick = ({ color }) => (
+    <View style={[styles.stick, { backgroundColor: color }]} />
+);
 
 const EditorsScene = () => {
-  const [data, setData] = useState([]);
-  const [gridData, setGridData] = useState([]);
+    const [data, setData] = useState([]);
+    const [gridData, setGridData] = useState([]);
 
-  useEffect(() => {
-    fetchData();
-  }, []);
+    useEffect(() => {
+        fetchData();
+    }, []);
 
-  const fetchData = async () => {
-    try {
-      // Simulando dados da API
-      const jsonData = Array.from({ length: 12 }, (_, index) => ({
-        id: index.toString(),
-        title: `Item ${index + 1}`,
-        imageUrl: `https://via.placeholder.com/150?text=Image${index + 1}`,
-      }));
-      setData(jsonData);
+    const fetchData = () => {
+        // Dados para o grid
+        const gridJsonData = ['Últimas notícias', 'Mais lidas', 'Opinião', 'Podcasts']
+        setGridData(gridJsonData);
 
-      // Dados para o grid
-      const gridJsonData = Array.from({ length: 4 }, (_, index) => jsonData[index]);
-      setGridData(gridJsonData);
-    } catch (error) {
-      console.error('Erro ao buscar os dados da API:', error);
-    }
-  };
+        // Dados para a lista
+        const listJsonData = ['Política', 'Economia', 'Empreendedorismo', 'Tecnologia', 'Internacional', 'Brasil',
+            'São Paulo', 'Estadão Verifica', 'Educação', 'Ciência', 'Sustentabilidade', 'Esportes', 'Saúde', 'Life/Style',
+            'Cultura', 'Emais', 'Paladar', 'Viagem']
+        setData(listJsonData);
+    };
 
-  const renderItem = ({ item }) => (
-    <TouchableOpacity style={styles.item}>
-      <Image source={{ uri: item.imageUrl }} style={styles.image} />
-      <Text>{item.title}</Text>
-    </TouchableOpacity>
-  );
+    const renderItem = ({ item }) => (
+        <TouchableOpacity style={styles.item}>
+            <Stick color={'rgb(37, 117, 232)'} />
+            <Image source={require('../../../assets/sustainability.png')} style={styles.image} />
+            <Text style={{
+                fontWeight: 'bold',
+                fontSize: 17,                
+            }}>{item}</Text>
+        </TouchableOpacity>
+    );
 
-  const renderGridItem = ({ item }) => (
-    <TouchableOpacity style={styles.gridItem}>
-      <Image source={{ uri: item.imageUrl }} style={styles.gridImage} />
-      <Text>{item.title}</Text>
-    </TouchableOpacity>
-  );
+    const renderGridItem = ({ item }) => (
+        <TouchableOpacity style={styles.gridItem}>
+            <Stick color={'rgb(37, 117, 232)'} />
+            <Text style={{
+                fontWeight: 'bold',
+                fontSize: 16,
+                position: 'absolute',
+                left: 14,
+                bottom: 14,
+            }}>{item}</Text>
+            <Image source={require('../../../assets/sustainability.png')} style={styles.gridImage} />
+        </TouchableOpacity>
+    );
 
-  return (
-    <View style={styles.container}>
-      <Text style={styles.header}>Grid com 4 elementos</Text>
-      <FlatList
-        data={gridData}
-        renderItem={renderGridItem}
-        keyExtractor={(item) => item.id.toString()}
-        numColumns={2}
-      />
-      <Text style={styles.header}>Listagem com 12 elementos</Text>
-      <FlatList
-        data={data}
-        renderItem={renderItem}
-        keyExtractor={(item) => item.id.toString()}
-      />
-    </View>
-  );
+    return (
+        <ScrollView contentContainerStyle={styles.scrollViewContainer}>
+            <View style={styles.container}>
+                <Text style={styles.header}>Editorias</Text>
+                <FlatList
+                    data={gridData}
+                    renderItem={renderGridItem}
+                    scrollEnabled={false}
+                    // keyExtractor={(item) => item.id.toString()}
+                    numColumns={2}
+                />
+                <FlatList
+                    data={data}
+                    renderItem={renderItem}
+                    scrollEnabled={false}
+                // keyExtractor={(item) => item.id.toString()}
+                />
+            </View>
+        </ScrollView>
+    );
 };
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    padding: 10,
-    backgroundColor: '#fff',
-  },
-  header: {
-    fontSize: 18,
-    fontWeight: 'bold',
-    marginBottom: 10,
-  },
-  item: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    padding: 10,
-    borderBottomWidth: 1,
-    borderBottomColor: '#ccc',
-  },
-  image: {
-    width: 50,
-    height: 50,
-    marginRight: 10,
-  },
-  gridItem: {
-    flex: 1,
-    flexDirection: 'column',
-    alignItems: 'center',
-    justifyContent: 'center',
-    margin: 5,
-    padding: 10,
-    borderWidth: 1,
-    borderColor: '#ccc',
-  },
-  gridImage: {
-    width: 100,
-    height: 100,
-    marginBottom: 5,
-  },
+    container: {
+        // flex: 1,
+        padding: 10,
+        backgroundColor: '#fff',
+    },
+    header: {
+        fontSize: 40,
+        color: 'rgb(37, 117, 232)',
+        fontWeight: 'bold',
+        marginBottom: 10,
+    },
+    item: {
+        flexDirection: 'row',
+        alignItems: 'center',
+        padding: 10,
+        width: 345,
+        height: 61,
+        borderBottomWidth: 1,
+        borderBottomColor: 'rgb(219 226 235)',
+    },
+    image: {
+        width: 20,
+        height: 20,
+        margin: 10,
+    },
+    gridItem: {
+        // flex: 1,
+        // alignItems: 'left',
+        // flexDirection: 'row',
+        // justifyContent: 'space-between',
+        width: 167,
+        height: 88,
+        margin: 5,
+        padding: 10,
+        borderWidth: 1,
+        borderColor: '#ccc',
+    },
+    gridImage: {
+        width: 20,
+        height: 20,
+        position: 'absolute',
+        top: 15,
+        right: 15,
+    },
+    scrollViewContainer: {
+        flexGrow: 1,
+    },
+    stick: {
+        width: 3,
+        height: 20,
+        marginRight: 10,
+    },
 });
 
 export default EditorsScene;
